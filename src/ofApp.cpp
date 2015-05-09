@@ -2,7 +2,7 @@
 
 void ofApp::setup()
 {
-# ifdef NO_LIVECODE
+# ifndef OF_LIVECODE
   liveApp = new ofLiveApp;
 # else
 
@@ -74,7 +74,7 @@ void ofApp::setup()
   rcpp.AddIncludeDir("../../of/src/openframeworks/types");
   rcpp.AddIncludeDir("../../of/src/openframeworks/utils");
   rcpp.AddIncludeDir("../../of/src/openframeworks/video");
-  
+
   rcpp.AddIncludeDir("../RuntimeCompiledCPlusPlus/Aurora");
   rcpp.AddIncludeDir("..");
 
@@ -100,82 +100,81 @@ void ofApp::setup()
     liveObject->GetInterface(&liveApp);
     liveId = liveObject->GetObjectId();
   }
+# endif // ifndef OF_LIVECODE
 
-# endif // ifndef NO_LIVECODE
-
-  liveApp->setup(globals);
+  liveApp->setup();
 }
 
 void ofApp::update()
 {
-# ifndef NO_LIVECODE
+# ifdef OF_LIVECODE
   if (rcpp.GetIsCompiledComplete()) rcpp.LoadCompiledModule();
   rcpp.GetFileChangeNotifier()->Update(0.1f);
 # endif
 
-  liveApp->update(globals);
+  liveApp->update();
 }
 
 void ofApp::draw()
 {
-  liveApp->draw(globals);
+  liveApp->draw();
 }
 
 void ofApp::exit()
 {
-  liveApp->exit(globals);
+  liveApp->exit();
 
-# ifdef NO_LIVECODE
+# ifndef OF_LIVECODE
   delete liveApp;
 # endif
 }
 
 void ofApp::keyPressed(ofKeyEventArgs& key)
 {
-  liveApp->keyPressed(globals, key);
+  liveApp->keyPressed(key);
 }
 
 void ofApp::keyReleased(ofKeyEventArgs& key)
 {
-  liveApp->keyReleased(globals, key);
+  liveApp->keyReleased(key);
 }
 
 void ofApp::mouseMoved(ofMouseEventArgs& mouse)
 {
-  liveApp->mouseMoved(globals, mouse);
+  liveApp->mouseMoved(mouse);
 }
 
 void ofApp::mouseDragged(ofMouseEventArgs& mouse)
 {
-  liveApp->mouseDragged(globals, mouse);
+  liveApp->mouseDragged(mouse);
 }
 
 void ofApp::mousePressed(ofMouseEventArgs& mouse)
 {
-  liveApp->mousePressed(globals, mouse);
+  liveApp->mousePressed(mouse);
 }
 
 void ofApp::mouseReleased(ofMouseEventArgs& mouse)
 {
-  liveApp->mouseReleased(globals, mouse);
+  liveApp->mouseReleased(mouse);
 }
 
 void ofApp::windowResized(ofResizeEventArgs& window)
 {
-  liveApp->windowResized(globals, window);
+  liveApp->windowResized(window);
 }
 
 void ofApp::gotMessage(ofMessage message)
 {
-  liveApp->gotMessage(globals, message);
+  liveApp->gotMessage(message);
 }
 
 void ofApp::dragEvent(ofDragInfo dragged)
 {
-  liveApp->dragEvent(globals, dragged);
+  liveApp->dragEvent(dragged);
 }
 
-#ifndef NO_LIVECODE
+#ifdef OF_LIVECODE
 void ofApp::OnConstructorsAdded()
 {
   if (liveApp) rcpp.GetObjectFactorySystem()->GetObject(liveId)->GetInterface(&liveApp);

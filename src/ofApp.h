@@ -3,7 +3,7 @@
 #include "ofLiveApp.h"
 
 class ofApp : public ofBaseApp
-#ifndef NO_LIVECODE
+#ifdef OF_LIVECODE
 ,public IObjectFactoryListener
 #endif
 {
@@ -23,14 +23,12 @@ class ofApp : public ofBaseApp
     void gotMessage    (ofMessage);
     void dragEvent     (ofDragInfo);
 
-#   ifndef NO_LIVECODE
+#   ifdef OF_LIVECODE
     void OnConstructorsAdded();
 
     RCPPLogger          log;
     RuntimeObjectSystem rcpp;
     ObjectId            liveId;
 #   endif
-
     ofLiveApp          *liveApp;
-    ofGlobals           globals;
 };

@@ -1,62 +1,80 @@
 #pragma once
 
-#ifndef NO_LIVECODE
+#ifdef OF_LIVECODE
 #include <RuntimeObjectSystem/ObjectInterfacePerModule.h>
 #include <RuntimeObjectSystem/IObjectFactorySystem.h>
 #include <RuntimeObjectSystem/RuntimeObjectSystem.h>
+#include <RuntimeObjectSystem/ISimpleSerializer.h>
 #include <RuntimeObjectSystem/IObject.h>
 #endif
 
 #include <ofMain.h>
 
-struct ofGlobals
-{
-};
-
 class ofLiveApp
-#ifndef NO_LIVECODE
+#ifdef OF_LIVECODE
 :public TInterface<IID_IOBJECT,IObject>
 #endif
 {
   public:
-    virtual void setup  (ofGlobals&);
-    virtual void update (ofGlobals&);
-    virtual void draw   (ofGlobals&);
-    virtual void exit   (ofGlobals&);
+    virtual void setup  ();
+    virtual void update ();
+    virtual void draw   ();
+    virtual void exit   ();
 
-    virtual void keyPressed    (ofGlobals&, ofKeyEventArgs&);
-    virtual void keyReleased   (ofGlobals&, ofKeyEventArgs&);
-    virtual void mouseMoved    (ofGlobals&, ofMouseEventArgs&);
-    virtual void mouseDragged  (ofGlobals&, ofMouseEventArgs&);
-    virtual void mousePressed  (ofGlobals&, ofMouseEventArgs&);
-    virtual void mouseReleased (ofGlobals&, ofMouseEventArgs&);
-    virtual void windowResized (ofGlobals&, ofResizeEventArgs&);
-    virtual void gotMessage    (ofGlobals&, ofMessage);
-    virtual void dragEvent     (ofGlobals&, ofDragInfo);
+    virtual void keyPressed    (ofKeyEventArgs&);
+    virtual void keyReleased   (ofKeyEventArgs&);
+    virtual void mouseMoved    (ofMouseEventArgs&);
+    virtual void mouseDragged  (ofMouseEventArgs&);
+    virtual void mousePressed  (ofMouseEventArgs&);
+    virtual void mouseReleased (ofMouseEventArgs&);
+    virtual void windowResized (ofResizeEventArgs&);
+    virtual void gotMessage    (ofMessage);
+    virtual void dragEvent     (ofDragInfo);
+
+#   ifdef OF_LIVECODE
+    virtual void Serialize(ISimpleSerializer* Serializer)
+    {
+      //SERIALIZE();
+    }
+#   endif
 };
 
-#ifndef NO_LIVECODE
-
+#ifdef OF_LIVECODE
 struct RCPPLogger : ICompilerLogger
 {
   void LogError(const char *format, ...)
   {
-    fprintf(stderr, "RCPP Error: %s", format);
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
   }
 
   void LogWarning(const char *format, ...)
   {
-    printf("RCPP Warning: %s", format);
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
   }
 
   void LogInfo(const char *format, ...)
   {
-    printf("RCPP Info: %s", format);
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
   }
 };
 
 #ifdef TARGET_LINUX
 RUNTIME_COMPILER_LINKLIBRARY(
+"-DOF_LIVECODE "
+"-DOF_USING_GTK "
+"-DOF_SOUND_PLAYER_OPENAL "
+"-DOF_SOUNDSTREAM_RTAUDIO "
+"-DOF_VIDEO_PLAYER_GSTREAMER "
+"-DOF_VIDEO_CAPTURE_GSTREAMER "
 #ifdef __clang__
 "-Wno-deprecated-register "
 #endif
@@ -174,5 +192,4 @@ RUNTIME_COMPILER_LINKLIBRARY(
 "-lgstvideo-1.0 "
 )
 #endif // #ifdef TARGET_LINUX
-
-#endif // #ifndef NO_LIVECODE
+#endif // #ifdef OF_LIVECODE

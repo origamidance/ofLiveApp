@@ -1,57 +1,58 @@
+
 #include "ofLiveApp.h"
 
-void ofLiveApp::setup(ofGlobals& in)
+void ofLiveApp::setup()
 {
 }
 
-void ofLiveApp::update(ofGlobals& in)
+void ofLiveApp::update()
 {
 }
 
-void ofLiveApp::draw(ofGlobals& in)
+void ofLiveApp::draw()
 {
 }
 
-void ofLiveApp::exit(ofGlobals& in)
+void ofLiveApp::exit()
 {
 }
 
-void ofLiveApp::keyPressed(ofGlobals& in, ofKeyEventArgs& key)
+void ofLiveApp::keyPressed(ofKeyEventArgs& key)
 {
 }
 
-void ofLiveApp::keyReleased(ofGlobals& in, ofKeyEventArgs& key)
+void ofLiveApp::keyReleased(ofKeyEventArgs& key)
 {
 }
 
-void ofLiveApp::mouseMoved(ofGlobals& in, ofMouseEventArgs& mouse)
+void ofLiveApp::mouseMoved(ofMouseEventArgs& mouse)
 {
 }
 
-void ofLiveApp::mouseDragged(ofGlobals& in, ofMouseEventArgs& mouse)
+void ofLiveApp::mouseDragged(ofMouseEventArgs& mouse)
 {
 }
 
-void ofLiveApp::mousePressed(ofGlobals& in, ofMouseEventArgs& mouse)
+void ofLiveApp::mousePressed(ofMouseEventArgs& mouse)
 {
 }
 
-void ofLiveApp::mouseReleased(ofGlobals& in, ofMouseEventArgs& mouse)
+void ofLiveApp::mouseReleased(ofMouseEventArgs& mouse)
 {
 }
 
-void ofLiveApp::windowResized(ofGlobals& in, ofResizeEventArgs& window)
+void ofLiveApp::windowResized(ofResizeEventArgs& window)
 {
 }
 
-void ofLiveApp::gotMessage(ofGlobals& in, ofMessage message)
+void ofLiveApp::gotMessage(ofMessage message)
 {
 }
 
-void ofLiveApp::dragEvent(ofGlobals& in, ofDragInfo dragged)
+void ofLiveApp::dragEvent(ofDragInfo dragged)
 {
 }
 
-#ifndef NO_LIVECODE
+#ifdef OF_LIVECODE
 REGISTERCLASS(ofLiveApp)
 #endif
