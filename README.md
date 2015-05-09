@@ -3,7 +3,15 @@ ofLiveApp
 
 ofLiveApp is Linux-only for now. Tested under Ubuntu 14.04.
 
-Write your code in `ofLiveApp.cpp` file. Once the code is compiled you can just save the source file and see your changes in your application usually after ~5 seconds. If you need global variables which should not be resetted on each code update, see `ofGlobals` struct declared at the top of `ofLiveApp.h` file and fill it with such objects (i.e. cameras). You can compile application normally by passing `-DOF_ENABLE_LIVECODE=OFF` to CMake on project generation step.
+Write your code in `ofLiveApp.cpp` file. Once the code is compiled you can just save the source file and see your changes in your application after ~5 seconds.
+
+If you need global variables which should not be resetted on each code update, see [`ofGlobals` struct](https://github.com/ofnode/ofLiveApp/blob/690ed70/src/ofLiveApp.h#L12-L14) and fill it with such objects (i.e. cameras).
+
+You can compile application normally by passing `-DOF_ENABLE_LIVECODE=OFF` to CMake on project generation step.
+
+Giant thanks to [@kritzikratzi](https://github.com/kritzikratzi) for making his code and notes available for anyone! Chack them out here:
+
+https://github.com/kritzikratzi/runtimeCPPDraw
 
 Compiling
 ---------
