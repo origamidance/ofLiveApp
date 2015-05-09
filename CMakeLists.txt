@@ -2,20 +2,19 @@ cmake_minimum_required(VERSION 2.8)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../of")
 
-project(ofApp)
-set(APP ofApp)
+project(ofLiveApp)
+set(APP ofLiveApp)
 
 include(openFrameworks)
 
 set(OF_ENABLE_LIVECODE ON CACHE BOOL "")
 
 if(OF_ENABLE_LIVECODE)
+    add_definitions(-DOF_LIVECODE)
     set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
     add_subdirectory(RuntimeCompiledCPlusPlus/Aurora)
     include_directories(RuntimeCompiledCPlusPlus/Aurora)
     list(APPEND OPENFRAMEWORKS_LIBRARIES RuntimeCompiler RuntimeObjectSystem)
-else()
-    add_definitions(-DNO_LIVECODE)
 endif()
 
 #ofxaddon()
