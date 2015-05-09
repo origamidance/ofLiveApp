@@ -5,15 +5,15 @@ ofLiveApp is Linux-only for now. Tested under Ubuntu 14.04.
 
 Write your code in `ofLiveApp.cpp` file. Once the code is compiled you can just save the source file and see your changes in your application after ~5 seconds.
 
-If you need variables which should not be resetted on each code update, add them to [`ofLiveApp` class](https://github.com/ofnode/ofLiveApp/blob/74d1200/src/ofLiveApp.h#L33) and uncomment [`SERIALIZE` macro](https://github.com/ofnode/ofLiveApp/blob/74d1200/src/ofLiveApp.h#L37), passing your object to it. You can make as many serializable objects as you want.
+If you need an object which should not be resetted on each code update, add it to [`ofLiveApp` class](https://github.com/ofnode/ofLiveApp/blob/74d1200/src/ofLiveApp.h#L33) and uncomment [`SERIALIZE` macro](https://github.com/ofnode/ofLiveApp/blob/74d1200/src/ofLiveApp.h#L37), passing your object to it. You can make as many serializable objects as you want.
 
-You also can compile application without RCC++ by passing `-DOF_ENABLE_LIVECODE=OFF` to `cmake` command on project generation step.
+You can also compile application without RCC++ by passing `-DOF_ENABLE_LIVECODE=OFF` to `cmake` command on project generation step.
 
 Giant thanks to [@kritzikratzi](https://github.com/kritzikratzi) for making his code and notes about integrating RCC++ and openFrameworks available to anyone! Check them here:
 
 https://github.com/kritzikratzi/runtimeCPPDraw
 
-And, of course, big thanks to [@dougbinks](https://github.com/dougbinks) for making RCC++ happen and helping me out with serialization!
+And, of course, big thanks to [@dougbinks](https://github.com/dougbinks) for making [RCC++](https://github.com/RuntimeCompiledCPlusPlus/RuntimeCompiledCPlusPlus) happen and helping me out with serialization!
 
 Compiling
 ---------
