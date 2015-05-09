@@ -1,4 +1,3 @@
-
 #include "ofLiveApp.h"
 
 void ofLiveApp::setup()
