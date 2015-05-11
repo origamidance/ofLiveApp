@@ -1,0 +1,7 @@
+*~
+*.txt.user
+
+build*/*
+debug*/*
+
+bin/
