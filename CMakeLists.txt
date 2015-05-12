@@ -1,11 +1,9 @@
-cmake_minimum_required(VERSION 2.8)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../of")
-
 project(ofLiveApp)
 set(APP ofLiveApp)
 
-include(openFrameworks)
+cmake_minimum_required(VERSION 2.8)
+
+include(../of/openFrameworks.cmake)
 
 set(OF_ENABLE_LIVECODE ON CACHE BOOL "")
 
