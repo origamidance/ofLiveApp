@@ -32,7 +32,7 @@ class ofLiveApp
     virtual void dragEvent     (ofDragInfo);
 
 #   ifdef OF_LIVECODE
-    virtual void Serialize(ISimpleSerializer* Serializer)
+    virtual void Serialize(ISimpleSerializer* pSerializer)
     {
       //SERIALIZE();
     }
