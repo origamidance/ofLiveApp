@@ -1,6 +1,8 @@
 #pragma once
 
-#ifdef OF_LIVECODE
+#include <ofMain.h>
+
+#ifdef RCCPP
 #include <RuntimeObjectSystem/ObjectInterfacePerModule.h>
 #include <RuntimeObjectSystem/IObjectFactorySystem.h>
 #include <RuntimeObjectSystem/RuntimeObjectSystem.h>
@@ -8,38 +10,23 @@
 #include <RuntimeObjectSystem/IObject.h>
 #endif
 
-#include <ofMain.h>
-
-class ofLiveApp
-#ifdef OF_LIVECODE
-:public TInterface<IID_IOBJECT,IObject>
+#ifdef RCCPP
+#define ofLiveApp TInterface<IID_IOBJECT,IObject>
+#else
+#define ofLiveApp ofBaseApp
 #endif
-{
-  public:
-    virtual void setup  ();
-    virtual void update ();
-    virtual void draw   ();
-    virtual void exit   ();
 
-    virtual void keyPressed    (ofKeyEventArgs&);
-    virtual void keyReleased   (ofKeyEventArgs&);
-    virtual void mouseMoved    (ofMouseEventArgs&);
-    virtual void mouseDragged  (ofMouseEventArgs&);
-    virtual void mousePressed  (ofMouseEventArgs&);
-    virtual void mouseReleased (ofMouseEventArgs&);
-    virtual void windowResized (ofResizeEventArgs&);
-    virtual void gotMessage    (ofMessage);
-    virtual void dragEvent     (ofDragInfo);
+#ifdef RCCPP
+#define SERIALIZE_BEGIN virtual void Serialize(ISimpleSerializer* pSerializer) {
+#define SERIALIZE_END }
+#else
+#define SERIALIZE_BEGIN
+#define SERIALIZE(x)
+#define SERIALIZE_END
+#define REGISTERCLASS(x)
+#endif
 
-#   ifdef OF_LIVECODE
-    virtual void Serialize(ISimpleSerializer* pSerializer)
-    {
-      //SERIALIZE();
-    }
-#   endif
-};
-
-#ifdef OF_LIVECODE
+#ifdef RCCPP
 struct RCPPLogger : ICompilerLogger
 {
   void LogError(const char *format, ...)
@@ -69,7 +56,7 @@ struct RCPPLogger : ICompilerLogger
 
 #ifdef TARGET_LINUX
 RUNTIME_COMPILER_LINKLIBRARY(
-"-DOF_LIVECODE "
+"-DRCCPP "
 "-DOF_USING_GTK "
 "-DOF_SOUND_PLAYER_OPENAL "
 "-DOF_SOUNDSTREAM_RTAUDIO "
@@ -192,4 +179,4 @@ RUNTIME_COMPILER_LINKLIBRARY(
 "-lgstvideo-1.0 "
 )
 #endif // #ifdef TARGET_LINUX
-#endif // #ifdef OF_LIVECODE
+#endif // #ifdef RCCPP

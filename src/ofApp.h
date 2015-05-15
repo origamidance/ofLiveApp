@@ -1,34 +1,26 @@
 #pragma once
 
-#include "ofLiveApp.h"
+#include "ofLiveMain.h"
 
-class ofApp : public ofBaseApp
-#ifdef OF_LIVECODE
-,public IObjectFactoryListener
-#endif
+class ofApp : public ofLiveApp
 {
   public:
-    void setup  ();
-    void update ();
-    void draw   ();
-    void exit   ();
+    virtual void setup  ();
+    virtual void update ();
+    virtual void draw   ();
+    virtual void exit   ();
 
-    void keyPressed    (ofKeyEventArgs&);
-    void keyReleased   (ofKeyEventArgs&);
-    void mouseMoved    (ofMouseEventArgs&);
-    void mouseDragged  (ofMouseEventArgs&);
-    void mousePressed  (ofMouseEventArgs&);
-    void mouseReleased (ofMouseEventArgs&);
-    void windowResized (ofResizeEventArgs&);
-    void gotMessage    (ofMessage);
-    void dragEvent     (ofDragInfo);
+    virtual void keyPressed    (ofKeyEventArgs&);
+    virtual void keyReleased   (ofKeyEventArgs&);
+    virtual void mouseMoved    (ofMouseEventArgs&);
+    virtual void mouseDragged  (ofMouseEventArgs&);
+    virtual void mousePressed  (ofMouseEventArgs&);
+    virtual void mouseReleased (ofMouseEventArgs&);
+    virtual void windowResized (ofResizeEventArgs&);
+    virtual void gotMessage    (ofMessage);
+    virtual void dragEvent     (ofDragInfo);
 
-#   ifdef OF_LIVECODE
-    void OnConstructorsAdded();
-
-    RCPPLogger          log;
-    RuntimeObjectSystem rcpp;
-    ObjectId            liveId;
-#   endif
-    ofLiveApp          *liveApp;
+    SERIALIZE_BEGIN
+    //SERIALIZE()
+    SERIALIZE_END
 };

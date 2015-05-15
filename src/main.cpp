@@ -1,7 +1,15 @@
-#include "ofApp.h"
+#include "ofLive.h"
 
 int main()
 {
-  ofSetupOpenGL(1280, 720, OF_WINDOW);
-  ofRunApp(new ofApp);
+  ofWindowSettings settings;
+  auto window = ofCreateWindow(settings);
+  #ifdef RCCPP
+  auto app = make_shared<ofLive>();
+  #else
+  auto app = make_shared<ofApp>();
+  #endif
+  ofRunApp(window, app);
+
+  return ofRunMainLoop();
 }
