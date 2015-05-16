@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ofMain.h>
+#include "ofMain.h"
 
 #ifdef RCCPP
 #include <RuntimeObjectSystem/ObjectInterfacePerModule.h>
