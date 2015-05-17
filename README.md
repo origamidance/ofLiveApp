@@ -82,12 +82,15 @@ Known issues
 ------------
 
 Q: My application doesn't changes after a code change!
+
 A: Check the command line of an application, probably the new code can't be compiled at runtime.
 
 Q: My application crashes after a code change!
+
 A: There can be many reasons why it may happen, I noticed only one so far: don't use raw pointers in your code.
 
 Q: `ofEasyCam` stops working after a code change!
+
 A: Use [`ofxFirstPersonCamera`]() instead, it was rewritten with `ofLiveApp` in mind.
 
 Compiling
