@@ -15,6 +15,47 @@ https://github.com/kritzikratzi/runtimeCPPDraw
 
 And, of course, big thanks to [@dougbinks](https://github.com/dougbinks) for making [RCC++](https://github.com/RuntimeCompiledCPlusPlus/RuntimeCompiledCPlusPlus) happen and helping me out with serialization!
 
+Known issues
+------------
+
+`Q:` My application doesn't changes after a code change!
+
+`A:` Check the command line of an application, probably the new code can't be compiled at runtime.
+
+`Q:` My application crashes after a code change!
+
+`A:` There can be many reasons why it may happen, I noticed only one so far: don't use raw pointers in your code.
+
+`Q:` `ofEasyCam` stops working after a code change!
+
+`A:` Use [`ofxFirstPersonCamera`](https://github.com/ofnode/ofxFirstPersonCamera) instead, it was rewritten with `ofLiveApp` in mind.
+
+Compiling
+---------
+
+Make sure that [of](https://github.com/ofnode/of) and ofApp share the same folder.
+
+![ScreenShot](http://i.imgur.com/xTQQYv4.png)
+
+Change directory to ofApp and perform these steps:
+
+```bash
+git submodule update --init --recursive
+mkdir build
+cd build
+cmake .. -G Ninja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release
+ninja
+```
+
+### [Compiling ofApp with IDE on Linux](https://github.com/ofnode/of/wiki/Compiling-ofApp-with-IDE-on-Linux)
+
+
+See also
+--------
+
+### [ofTools](https://github.com/ofnode/ofTools)
+
+
 Converting ofApp to ofLiveApp
 -----------------------------
 
@@ -63,58 +104,17 @@ virtual void dragEvent     (ofDragInfo);
 
 REGISTERCLASS(ofApp)
 
-void ofApp::setup() {}
-void ofApp::update() {}
-void ofApp::draw() {}
-void ofApp::exit() {}
-void ofApp::keyPressed(ofKeyEventArgs& key) {}
-void ofApp::keyReleased(ofKeyEventArgs& key) {}
-void ofApp::mouseMoved(ofMouseEventArgs& mouse) {}
-void ofApp::mouseDragged(ofMouseEventArgs& mouse) {}
-void ofApp::mousePressed(ofMouseEventArgs& mouse) {}
-void ofApp::mouseReleased(ofMouseEventArgs& mouse) {}
-void ofApp::windowResized(ofResizeEventArgs& window) {}
-void ofApp::gotMessage(ofMessage message) {}
-void ofApp::dragEvent(ofDragInfo dragged) {}
+void ofApp::setup(){}
+void ofApp::update(){}
+void ofApp::draw(){}
+void ofApp::exit(){}
+void ofApp::keyPressed(ofKeyEventArgs& key){}
+void ofApp::keyReleased(ofKeyEventArgs& key){}
+void ofApp::mouseMoved(ofMouseEventArgs& mouse){}
+void ofApp::mouseDragged(ofMouseEventArgs& mouse){}
+void ofApp::mousePressed(ofMouseEventArgs& mouse){}
+void ofApp::mouseReleased(ofMouseEventArgs& mouse){}
+void ofApp::windowResized(ofResizeEventArgs& window){}
+void ofApp::gotMessage(ofMessage message){}
+void ofApp::dragEvent(ofDragInfo dragged){}
 ```
-
-Known issues
-------------
-
-Q: My application doesn't changes after a code change!
-
-A: Check the command line of an application, probably the new code can't be compiled at runtime.
-
-Q: My application crashes after a code change!
-
-A: There can be many reasons why it may happen, I noticed only one so far: don't use raw pointers in your code.
-
-Q: `ofEasyCam` stops working after a code change!
-
-A: Use [`ofxFirstPersonCamera`](https://github.com/ofnode/ofxFirstPersonCamera) instead, it was rewritten with `ofLiveApp` in mind.
-
-Compiling
----------
-
-Make sure that [of](https://github.com/ofnode/of) and ofApp share the same folder.
-
-![ScreenShot](http://i.imgur.com/xTQQYv4.png)
-
-Change directory to ofApp and perform these steps:
-
-```bash
-git submodule update --init --recursive
-mkdir build
-cd build
-cmake .. -G Ninja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release
-ninja
-```
-
-### [Compiling ofApp with IDE on Linux](https://github.com/ofnode/of/wiki/Compiling-ofApp-with-IDE-on-Linux)
-
-
-See also
---------
-
-### [ofTools](https://github.com/ofnode/ofTools)
-
