@@ -56,64 +56,26 @@ virtual void gotMessage    (ofMessage);
 virtual void dragEvent     (ofDragInfo);
 ```
 
-  * In `ofLiveApp/src/ofApp.cpp` add `REGISTERCLASS(ofApp)` line after `#include "ofApp.h"` and add all callback implementations if some of them are missing in your code:
+  * In `ofLiveApp/src/ofApp.cpp` add `REGISTERCLASS(ofApp)` line and all missing callback implementations, even if your code doesn't use them:
 
 ```cpp
 #include "ofApp.h
 
 REGISTERCLASS(ofApp)
 
-void ofApp::setup()
-{
-}
-
-void ofApp::update()
-{
-}
-
-void ofApp::draw()
-{
-}
-
-void ofApp::exit()
-{
-}
-
-void ofApp::keyPressed(ofKeyEventArgs& key)
-{
-}
-
-void ofApp::keyReleased(ofKeyEventArgs& key)
-{
-}
-
-void ofApp::mouseMoved(ofMouseEventArgs& mouse)
-{
-}
-
-void ofApp::mouseDragged(ofMouseEventArgs& mouse)
-{
-}
-
-void ofApp::mousePressed(ofMouseEventArgs& mouse)
-{
-}
-
-void ofApp::mouseReleased(ofMouseEventArgs& mouse)
-{
-}
-
-void ofApp::windowResized(ofResizeEventArgs& window)
-{
-}
-
-void ofApp::gotMessage(ofMessage message)
-{
-}
-
-void ofApp::dragEvent(ofDragInfo dragged)
-{
-}
+void ofApp::setup() {}
+void ofApp::update() {}
+void ofApp::draw() {}
+void ofApp::exit() {}
+void ofApp::keyPressed(ofKeyEventArgs& key) {}
+void ofApp::keyReleased(ofKeyEventArgs& key) {}
+void ofApp::mouseMoved(ofMouseEventArgs& mouse) {}
+void ofApp::mouseDragged(ofMouseEventArgs& mouse) {}
+void ofApp::mousePressed(ofMouseEventArgs& mouse) {}
+void ofApp::mouseReleased(ofMouseEventArgs& mouse) {}
+void ofApp::windowResized(ofResizeEventArgs& window) {}
+void ofApp::gotMessage(ofMessage message) {}
+void ofApp::dragEvent(ofDragInfo dragged) {}
 ```
 
 Known issues
