@@ -2,7 +2,8 @@
 
 int main()
 {
-  ofWindowSettings settings;
+  ofGLFWWindowSettings settings;
+
   auto window = ofCreateWindow(settings);
   #ifdef RCCPP
   auto app = make_shared<ofLive>();

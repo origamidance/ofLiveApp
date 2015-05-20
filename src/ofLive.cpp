@@ -150,19 +150,59 @@ void ofLive::mouseReleased(ofMouseEventArgs& mouse)
   rAPP->mouseReleased(mouse);
 }
 
+void ofLive::mouseScrolled(ofMouseEventArgs& mouse)
+{
+  rAPP->mouseScrolled(mouse);
+}
+
+void ofLive::mouseEntered(ofMouseEventArgs& mouse)
+{
+  rAPP->mouseEntered(mouse);
+}
+
+void ofLive::mouseExited(ofMouseEventArgs& mouse)
+{
+  rAPP->mouseExited(mouse);
+}
+
+void ofLive::touchDown(ofTouchEventArgs& touch)
+{
+  rAPP->touchDown(touch);
+}
+
+void ofLive::touchMoved(ofTouchEventArgs& touch)
+{
+  rAPP->touchMoved(touch);
+}
+
+void ofLive::touchUp(ofTouchEventArgs& touch)
+{
+  rAPP->touchUp(touch);
+}
+
+void ofLive::touchDoubleTap(ofTouchEventArgs& touch)
+{
+  rAPP->touchDoubleTap(touch);
+}
+
+void ofLive::touchCancelled(ofTouchEventArgs& touch)
+{
+  rAPP->touchCancelled(touch);
+}
+
 void ofLive::windowResized(ofResizeEventArgs& window)
 {
   rAPP->windowResized(window);
 }
 
-void ofLive::gotMessage(ofMessage message)
+void ofLive::dragged(ofDragInfo& dragged)
 {
-  rAPP->gotMessage(message);
+  rAPP->dragged(dragged);
 }
 
-void ofLive::dragEvent(ofDragInfo dragged)
+void ofLive::messageReceived(ofMessage& message)
 {
-  rAPP->dragEvent(dragged);
+  rAPP->messageReceived(message);
 }
 
 void ofLive::OnConstructorsAdded()

@@ -11,7 +11,7 @@
 #endif
 
 #ifdef RCCPP
-#define ofLiveApp TInterface<IID_IOBJECT,IObject>
+#define ofLiveApp TInterface<IID_IOBJECT,IObject>, public ofBaseApp
 #else
 #define ofLiveApp ofBaseApp
 #endif
