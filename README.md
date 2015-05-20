@@ -53,6 +53,7 @@ ninja
 See also
 --------
 
+### [ofApp](https://github.com/ofnode/ofApp)
 ### [ofTools](https://github.com/ofnode/ofTools)
 
 
