@@ -5,7 +5,7 @@ ofLiveApp is Linux-only for now. Tested under Ubuntu 14.04.
 
 Write your code in `ofApp.cpp` file. Once the code is compiled you can just save the source file and see your changes in your application after ~5 seconds.
 
-If you need an object which should not be resetted on each code update, add it to [`SERIALIZE` macro](https://github.com/ofnode/ofLiveApp/blob/18974f5/src/ofApp.h#L24). You can make as many serializable objects as you want.
+If you need an object which should not be resetted on each code update, add it to [`SERIALIZE` macro](https://github.com/ofnode/ofLiveApp/blob/43a5f2a/src/ofApp.h#L35). You can make as many serializable objects as you want.
 
 You can also compile application without RCC++ by passing `-DOF_ENABLE_LIVECODING=OFF` to `cmake` command on project generation step.
 
