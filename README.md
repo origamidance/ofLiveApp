@@ -18,9 +18,9 @@ And, of course, big thanks to [@dougbinks](https://github.com/dougbinks) for mak
 Known issues
 ------------
 
-`Q:` My application doesn't changes when I save the source file!
+`Q:` My application doesn't change when I save the source file!
 
-`A:` Check the command line of an application, probably the new code can't be compiled at runtime.
+`A:` Check the command line of your application, probably the code can't be compiled at runtime.
 
 `Q:` My application crashes after a code change!
 
