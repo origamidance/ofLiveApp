@@ -1,37 +1,70 @@
 #pragma once
 
 #include "ofLiveMain.h"
+#include "ofxImGui.h"
+#include "ThemeTest.h"
 
 class ofApp : public ofLiveApp
 {
-  public:
-    void setup  ();
-    void update ();
-    void draw   ();
-    void exit   ();
+public:
+    void setup();
 
-    void keyPressed      (ofKeyEventArgs&);
-    void keyReleased     (ofKeyEventArgs&);
+    void update();
 
-    void mouseMoved      (ofMouseEventArgs&);
-    void mouseDragged    (ofMouseEventArgs&);
-    void mousePressed    (ofMouseEventArgs&);
-    void mouseReleased   (ofMouseEventArgs&);
-    void mouseScrolled   (ofMouseEventArgs&);
-    void mouseEntered    (ofMouseEventArgs&);
-    void mouseExited     (ofMouseEventArgs&);
+    void draw();
 
-    void touchDown       (ofTouchEventArgs&);
-    void touchMoved      (ofTouchEventArgs&);
-    void touchUp         (ofTouchEventArgs&);
-    void touchDoubleTap  (ofTouchEventArgs&);
-    void touchCancelled  (ofTouchEventArgs&);
+    void exit();
 
-    void windowResized   (ofResizeEventArgs&);
-    void dragged         (ofDragInfo&);
-    void messageReceived (ofMessage&);
+    void keyPressed(ofKeyEventArgs &);
+
+    void keyReleased(ofKeyEventArgs &);
+
+    void mouseMoved(ofMouseEventArgs &);
+
+    void mouseDragged(ofMouseEventArgs &);
+
+    void mousePressed(ofMouseEventArgs &);
+
+    void mouseReleased(ofMouseEventArgs &);
+
+    void mouseScrolled(ofMouseEventArgs &);
+
+    void mouseEntered(ofMouseEventArgs &);
+
+    void mouseExited(ofMouseEventArgs &);
+
+    void touchDown(ofTouchEventArgs &);
+
+    void touchMoved(ofTouchEventArgs &);
+
+    void touchUp(ofTouchEventArgs &);
+
+    void touchDoubleTap(ofTouchEventArgs &);
+
+    void touchCancelled(ofTouchEventArgs &);
+
+    void windowResized(ofResizeEventArgs &);
+
+    void dragged(ofDragInfo &);
+
+    void messageReceived(ofMessage &);
+
+    ofxImGui gui;
+    ImVec4 backgroundColor;
+    bool show_test_window;
+    bool show_another_window;
+
+    float floatValue;
+    ofImage imageButtonSource;
+    GLuint imageButtonID;
+
+    ofPixels pixelsButtonSource;
+    GLuint pixelsButtonID;
+
+    ofTexture textureSource;
+    GLuint textureSourceID;
 
     SERIALIZE_BEGIN
-    //SERIALIZE()
+        //SERIALIZE()
     SERIALIZE_END
 };

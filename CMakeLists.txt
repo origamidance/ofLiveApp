@@ -10,6 +10,7 @@ endif(CCACHE_FOUND)
 project(ofApp)
 set(APP ofApp)
 
+set(OF_STATIC OFF)
 include(../of/openFrameworks.cmake)
 
 #// LIVECODING /////////////////////////////////////////////////////////////////
@@ -27,7 +28,7 @@ endif()
 
 #///////////////////////////////////////////////////////////////////////////////
 
-#ofxaddon()
+ofxaddon(addons/ofxImGui)
 
 set(SOURCES
     src/main.cpp

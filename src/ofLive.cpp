@@ -10,8 +10,7 @@ void ofLive::setup()
 # ifdef NDEBUG
   rCPP.AddLibraryDir("../../of/lib-linux/release-x86-64");
 # else
-  rCPP.AddLibraryDir("../../of/lib-linux/release-x86-64");
-  // rCPP.AddLibraryDir("../../of/lib-linux/debug");
+  rCPP.AddLibraryDir("../../of/lib-linux/debug-x86-64");
 # endif
 # endif
 
@@ -82,6 +81,8 @@ void ofLive::setup()
   rCPP.AddIncludeDir("../../of/src/openframeworks/video");
 
   rCPP.AddIncludeDir("../RuntimeCompiledCPlusPlus/Aurora");
+  rCPP.AddIncludeDir("../addons/ofxImGui/src");
+  rCPP.AddIncludeDir("../addons/ofxImGui/libs/imgui/src");
   rCPP.AddIncludeDir("..");
 
   {
