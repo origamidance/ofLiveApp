@@ -12,6 +12,7 @@ void ofApp::update()
 
 void ofApp::draw()
 {
+  ofDrawCircle(200,300,50);
 }
 
 void ofApp::exit()
