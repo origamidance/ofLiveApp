@@ -6,3 +6,7 @@ build/*
 debug/*
 
 bin/
+
+.ninja*
+
+.idea/
