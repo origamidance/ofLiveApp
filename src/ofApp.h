@@ -49,12 +49,18 @@ public:
 
     void messageReceived(ofMessage &);
 
+    void drawInteractionArea();
+    bool bShowHelp;
+    ofEasyCam cam; // add mouse controls for camera movement
+  ::ofEasyCam testcam;
     ofxImGui gui;
+
     ImVec4 backgroundColor;
     bool show_test_window;
     bool show_another_window;
 
     float floatValue;
+    int intValue;
     ofImage imageButtonSource;
     GLuint imageButtonID;
 
@@ -67,4 +73,5 @@ public:
     SERIALIZE_BEGIN
         //SERIALIZE()
     SERIALIZE_END
+
 };
