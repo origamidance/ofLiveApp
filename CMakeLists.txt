@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_program(CCACHE_FOUND ccache)
@@ -52,6 +52,14 @@ find_package(Threads REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(Boost COMPONENTS filesystem system REQUIRED)
+find_package(ALSA REQUIRED)
+find_package(OpenAL REQUIRED)
+find_package(MPG123 REQUIRED)
+find_package(Sndfile REQUIRED)
+find_package(UDev REQUIRED)
+find_package(Glib REQUIRED)
+find_package(GStreamer REQUIRED)
+pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 set(OPENFRAMEWORKS_INCLUDE_DIRS
     "${OF_ROOT_DIR}/src/openframeworks"
     "${OF_ROOT_DIR}/src/openframeworks/3d"
@@ -102,32 +110,38 @@ set(OPENFRAMEWORKS_INCLUDE_DIRS
 
     "${OF_ROOT_DIR}/src/utf8cpp"
     "${OF_ROOT_DIR}/src/utf8cpp/include"
+        #    ${X11_INCLUDE_DIR}
+        ${ZLIB_INCLUDE_DIRS}
+        ${PIXMAN_INCLUDE_DIRS}
+        ${CAIRO_INCLUDE_DIRS}
+        ${Boost_INCLUDE_DIRS}
+        ${OPENGL_INCLUDE_DIR}
+        ${OPENSSL_INCLUDE_DIR}
+        ${FREETYPE_INCLUDE_DIRS}
+        ${FONTCONFIG_INCLUDE_DIRS}
+        ${GLEW_INCLUDE_DIRS}
+        #    ${ALSA_INCLUDE_DIRS}
+        #    ${OPENAL_INCLUDE_DIR}
+        #    ${MPG123_INCLUDE_DIRS}
+        #    ${SNDFILE_INCLUDE_DIR}
+        ${UDEV_INCLUDE_DIR}
+        ${GLIB_INCLUDE_DIRS}
+        ${GTK3_INCLUDE_DIRS}
+        ${GSTREAMER_INCLUDE_DIRS}
 )
 file(GLOB_RECURSE OPENFRAMEWORKS_LIBS "${OF_LIB_DIR}/*.so")
 if(NOT OPENFRAMEWORKS_LIBS)
   message(FATAL_ERROR "No shared openFrameworks libraries found in ${OF_LIB_DIR} folder.")
 endif()
-list(APPEND OPENFRAMEWORKS_INCLUDE_DIRS
-  ${X11_INCLUDE_DIR}
-  ${ZLIB_INCLUDE_DIRS}
-  ${PIXMAN_INCLUDE_DIRS}
-  ${CAIRO_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIRS}
-  ${OPENGL_INCLUDE_DIR}
-  ${OPENSSL_INCLUDE_DIR}
-  ${FREETYPE_INCLUDE_DIRS}
-  ${FONTCONFIG_INCLUDE_DIRS}
-  ${GLEW_INCLUDE_DIRS}
-  )
 
-list(APPEND OPENFRAMEWORKS_LIBRARIES
+set(OPENFRAMEWORKS_LIBRARIES
   ${OPENFRAMEWORKS_LIBS}
-  ${X11_Xi_LIB}
-  ${X11_LIBRARIES}
-  ${X11_Xrandr_LIB}
-  ${X11_Xcursor_LIB}
-  ${X11_Xxf86vm_LIB}
-  ${X11_Xinerama_LIB}
+        #  ${X11_Xi_LIB}
+        #  ${X11_LIBRARIES}
+        #  ${X11_Xrandr_LIB}
+        #  ${X11_Xcursor_LIB}
+        #  ${X11_Xxf86vm_LIB}
+        #  ${X11_Xinerama_LIB}
   ${ZLIB_LIBRARIES}
   ${CAIRO_LIBRARIES}
   ${PIXMAN_LIBRARIES}
@@ -140,108 +154,119 @@ list(APPEND OPENFRAMEWORKS_LIBRARIES
   ${Boost_FILESYSTEM_LIBRARY}
   ${GLEW_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT}
+        #${ALSA_LIBRARIES}
+        #${OPENAL_LIBRARY}
+        #${MPG123_LIBRARIES}
+        #${SNDFILE_LIBRARIES}
+        ${UDEV_LIBRARIES}
+        ${GLIB_LIBRARIES}
+        ${GTK3_LIBRARIES}
+        ${GSTREAMER_LIBRARIES}
+        ${GSTREAMER_APP_LIBRARIES}
+        ${GSTREAMER_BASE_LIBRARIES}
+        ${GSTREAMER_VIDEO_LIBRARIES}
   )
 
-if(NOT OF_AUDIO)
-  list(APPEND OPENFRAMEWORKS_DEFINITIONS -DTARGET_NO_SOUND)
-else()
-  find_package(ALSA REQUIRED)
-  find_package(OpenAL REQUIRED)
-  find_package(MPG123 REQUIRED)
-  find_package(Sndfile REQUIRED)
-
-  list(APPEND OPENFRAMEWORKS_INCLUDE_DIRS
-    ${ALSA_INCLUDE_DIRS}
-    ${OPENAL_INCLUDE_DIR}
-    ${MPG123_INCLUDE_DIRS}
-    ${SNDFILE_INCLUDE_DIR}
-    )
-
-  list(APPEND OPENFRAMEWORKS_LIBRARIES
-    ${ALSA_LIBRARIES}
-    ${OPENAL_LIBRARY}
-    ${MPG123_LIBRARIES}
-    ${SNDFILE_LIBRARIES}
-    )
-endif()
-
-if(NOT OF_VIDEO)
-  list(APPEND OPENFRAMEWORKS_DEFINITIONS -DTARGET_NO_VIDEO)
-else()
-  list(APPEND OPENFRAMEWORKS_DEFINITIONS -DOF_USING_GTK)
-
-  find_package(UDev REQUIRED)
-  find_package(Glib REQUIRED)
-  find_package(GStreamer REQUIRED)
-  pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
-
-  list(APPEND OPENFRAMEWORKS_INCLUDE_DIRS
-    ${UDEV_INCLUDE_DIR}
-    ${GLIB_INCLUDE_DIRS}
-    ${GTK3_INCLUDE_DIRS}
-    ${GSTREAMER_INCLUDE_DIRS}
-    )
-
-  list(APPEND OPENFRAMEWORKS_LIBRARIES
-    ${UDEV_LIBRARIES}
-    ${GLIB_LIBRARIES}
-    ${GTK3_LIBRARIES}
-    ${GSTREAMER_LIBRARIES}
-    ${GSTREAMER_APP_LIBRARIES}
-    ${GSTREAMER_BASE_LIBRARIES}
-    ${GSTREAMER_VIDEO_LIBRARIES}
-    )
-endif()
-message(STATUS ${OPENFRAMEWORKS_INCLUDE_DIRS})
-message(STATUS ${OPENFRAMEWORKS_LIBRARIES})
+#if(NOT OF_AUDIO)
+#  list(APPEND OPENFRAMEWORKS_DEFINITIONS -DTARGET_NO_SOUND)
+#else()
+#  find_package(ALSA REQUIRED)
+#  find_package(OpenAL REQUIRED)
+#  find_package(MPG123 REQUIRED)
+#  find_package(Sndfile REQUIRED)
+#
+#  list(APPEND OPENFRAMEWORKS_INCLUDE_DIRS
+#    ${ALSA_INCLUDE_DIRS}
+#    ${OPENAL_INCLUDE_DIR}
+#    ${MPG123_INCLUDE_DIRS}
+#    ${SNDFILE_INCLUDE_DIR}
+#    )
+#
+#  list(APPEND OPENFRAMEWORKS_LIBRARIES
+#    ${ALSA_LIBRARIES}
+#    ${OPENAL_LIBRARY}
+#    ${MPG123_LIBRARIES}
+#    ${SNDFILE_LIBRARIES}
+#    )
+#endif()
+#
+#if(NOT OF_VIDEO)
+#  list(APPEND OPENFRAMEWORKS_DEFINITIONS -DTARGET_NO_VIDEO)
+#else()
+#  list(APPEND OPENFRAMEWORKS_DEFINITIONS -DOF_USING_GTK)
+#
+#  find_package(UDev REQUIRED)
+#  find_package(Glib REQUIRED)
+#  find_package(GStreamer REQUIRED)
+#  pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+#
+#  list(APPEND OPENFRAMEWORKS_INCLUDE_DIRS
+#    ${UDEV_INCLUDE_DIR}
+#    ${GLIB_INCLUDE_DIRS}
+#    ${GTK3_INCLUDE_DIRS}
+#    ${GSTREAMER_INCLUDE_DIRS}
+#    )
+#
+#  list(APPEND OPENFRAMEWORKS_LIBRARIES
+#    ${UDEV_LIBRARIES}
+#    ${GLIB_LIBRARIES}
+#    ${GTK3_LIBRARIES}
+#    ${GSTREAMER_LIBRARIES}
+#    ${GSTREAMER_APP_LIBRARIES}
+#    ${GSTREAMER_BASE_LIBRARIES}
+#    ${GSTREAMER_VIDEO_LIBRARIES}
+#    )
+#endif()
+#message(STATUS ${OPENFRAMEWORKS_INCLUDE_DIRS})
+message(STATUS "openframeworks libraries:${OPENFRAMEWORKS_LIBRARIES}")
 include_directories(${OPENFRAMEWORKS_INCLUDE_DIRS})
+#
+#if(CMAKE_C_COMPILER_ID STREQUAL Clang)
+#
+#  set(RELEASE_C_FLAGS_CLANG "
+#    ${RELEASE_C_FLAGS_CLANG}
+#    -Wno-switch
+#    -Wno-c++11-narrowing
+#    -Wno-ignored-attributes
+#    -Wno-deprecated-register
+#  ")
+#
+#  set(DEBUG_C_FLAGS_CLANG "
+#    ${DEBUG_C_FLAGS_CLANG}
+#    -Wno-switch
+#    -Wno-c++11-narrowing
+#    -Wno-ignored-attributes
+#    -Wno-deprecated-register
+#  ")
+#
+#endif()
 
-if(CMAKE_C_COMPILER_ID STREQUAL Clang)
-
-  set(RELEASE_C_FLAGS_CLANG "
-    ${RELEASE_C_FLAGS_CLANG}
-    -Wno-switch
-    -Wno-c++11-narrowing
-    -Wno-ignored-attributes
-    -Wno-deprecated-register
-  ")
-
-  set(DEBUG_C_FLAGS_CLANG "
-    ${DEBUG_C_FLAGS_CLANG}
-    -Wno-switch
-    -Wno-c++11-narrowing
-    -Wno-ignored-attributes
-    -Wno-deprecated-register
-  ")
-
-endif()
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL Clang)
-
-  set(CXX_FLAGS_CLANG "
-    ${RELEASE_CXX_FLAGS_CLANG}
-    -Wno-switch
-    -Wno-c++11-narrowing
-    -Wno-ignored-attributes
-    -Wno-deprecated-register
-  ")
-
-  set(CXX_COLORIZATION "-fcolor-diagnostics")
-  set(O_C_FLAG -O0)
-  set(O_CXX_FLAG -O0)
-  set(PIC_FLAG -fPIC)
-  set(CPP11_FLAG -std=gnu++14)
-  set(RELEASE_FLAGS "
-  ${RELEASE_FLAGS}
-  -g1
-")
-endif()
-set(CMAKE_CXX_FLAGS "-std=gnu++14"
+#if(CMAKE_CXX_COMPILER_ID STREQUAL Clang)
+#
+#  set(CXX_FLAGS_CLANG "
+#    ${RELEASE_CXX_FLAGS_CLANG}
+#    -Wno-switch
+#    -Wno-c++11-narrowing
+#    -Wno-ignored-attributes
+#    -Wno-deprecated-register
+#  ")
+#
+#  set(CXX_COLORIZATION "-fcolor-diagnostics")
+#  set(O_C_FLAG -O0)
+#  set(O_CXX_FLAG -O0)
+#  set(PIC_FLAG -fPIC)
+#  set(CPP11_FLAG -std=gnu++14)
+#  set(RELEASE_FLAGS "
+#  ${RELEASE_FLAGS}
+#  -g1
+#")
+#endif()
+set(CMAKE_CXX_FLAGS "-std=c++11"
   )
 
 #// LIVECODING /////////////////////////////////////////////////////////////////
 
-set(OF_ENABLE_LIVECODING ON CACHE BOOL "")
+set(OF_ENABLE_LIVECODING OFF CACHE BOOL "")
 message("++ OF_ENABLE_LIVECODING: " ${OF_ENABLE_LIVECODING})
 
 if(OF_ENABLE_LIVECODING)
@@ -249,7 +274,8 @@ if(OF_ENABLE_LIVECODING)
     set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
     add_subdirectory(RuntimeCompiledCPlusPlus/Aurora)
     include_directories(RuntimeCompiledCPlusPlus/Aurora)
-    list(APPEND OPENFRAMEWORKS_LIBRARIES RuntimeCompiler RuntimeObjectSystem)
+    #    list(APPEND OPENFRAMEWORKS_LIBRARIES RuntimeCompiler RuntimeObjectSystem)
+    set(OPENFRAMEWORKS_LIBRARIES ${OPENFRAMEWORKS_LIBRARIES} RuntimeCompiler RuntimeObjectSystem)
 endif()
 
 #///////////////////////////////////////////////////////////////////////////////

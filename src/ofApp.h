@@ -52,7 +52,6 @@ public:
     void drawInteractionArea();
     bool bShowHelp;
     ofEasyCam cam; // add mouse controls for camera movement
-  ::ofEasyCam testcam;
     ofxImGui gui;
 
     ImVec4 backgroundColor;
