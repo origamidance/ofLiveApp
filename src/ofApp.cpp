@@ -84,7 +84,7 @@ void ofApp::draw() {
     backgroundColor = ofColor(114, 144, 154);
     ofSetBackgroundColor(backgroundColor);
     ofDrawCircle(200, 300,intValue);
-    ofDrawCircle(300, 400, 50);
+    ofDrawCircle(300, 400, 100);
     ofSetColor(0, 255, 255);
     ofDrawCircle(100, 200, 20);
     //required to call this at beginning

@@ -261,12 +261,13 @@ include_directories(${OPENFRAMEWORKS_INCLUDE_DIRS})
 #  -g1
 #")
 #endif()
-set(CMAKE_CXX_FLAGS "-std=c++11"
+set(CMAKE_CXX_FLAGS
+        "-std=c++11 -fPIC -Wno-switch -Wno-c++11-narrowing -Wno-ignored-attributes -Wno-deprecated-register"
   )
 
 #// LIVECODING /////////////////////////////////////////////////////////////////
 
-set(OF_ENABLE_LIVECODING OFF CACHE BOOL "")
+set(OF_ENABLE_LIVECODING ON CACHE BOOL "")
 message("++ OF_ENABLE_LIVECODING: " ${OF_ENABLE_LIVECODING})
 
 if(OF_ENABLE_LIVECODING)
